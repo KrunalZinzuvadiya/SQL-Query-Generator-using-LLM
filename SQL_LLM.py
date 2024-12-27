@@ -3,7 +3,7 @@ from tkinter import messagebox, scrolledtext
 import cohere
 
 # Configure your Cohere API key
-COHERE_API_KEY = "pYUL24Qf3UJPCqForAQWP8ABzh2wKJzKjhm0pfH4"
+COHERE_API_KEY = 
 
 # Initialize Cohere client
 cohere_client = cohere.Client(COHERE_API_KEY)
