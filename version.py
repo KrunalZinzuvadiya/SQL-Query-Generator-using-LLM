@@ -10,7 +10,8 @@ VERSION_TUPLE = (0, 2, 0)  # major, minor, patch
 
 
 def get_version() -> str:
-    """Return the current version string."""
+    """Added the new string."""
+    "Made changes to the docstring."
     return VERSION
 
 
