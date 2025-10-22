@@ -9,6 +9,17 @@ VERSION = "0.2.0"
 VERSION_TUPLE = (0, 2, 0)  # major, minor, patch
 
 
+def get_version() -> str:
+    """Added the new string."""
+    "Made changes to the docstring."
+    return VERSION
+
+
+def get_version_tuple() -> tuple[int, int, int]:
+    """Return version as (major, minor, patch) tuple."""
+    return VERSION_TUPLE
+
+
 def is_compatible_version(other_version: str) -> bool:
     """Check if other_version is compatible with current version.
     
