@@ -59,10 +59,27 @@ python .\sql_generator.py
 python .\mini_demo.py
 ```
 
-## Local LLM fallback
+## Running tests
 
-The GUI in `SQL_LLM.py` will try to use Cohere if `COHERE_API_KEY` is set and the Cohere package is available.
-If not configured, it falls back to a small local rule-based generator (`sql_generator.py`). This lets you try the UI and demos without an external API key.
+We include a couple of tiny pytest-based tests for the utility modules. To run them locally:
+
+1. Install pytest (if you don't have it):
+
+```powershell
+pip install pytest
+```
+
+2. Run tests from the repository root:
+
+```powershell
+pytest -q
+```
+
+If you prefer, run the specific test file:
+
+```powershell
+pytest -q tests/test_mini_utils.py
+```
 
 ## Project Structure
 
