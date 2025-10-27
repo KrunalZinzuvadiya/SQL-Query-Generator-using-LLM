@@ -59,6 +59,28 @@ python .\sql_generator.py
 python .\mini_demo.py
 ```
 
+## Running tests
+
+We include a couple of tiny pytest-based tests for the utility modules. To run them locally:
+
+1. Install pytest (if you don't have it):
+
+```powershell
+pip install pytest
+```
+
+2. Run tests from the repository root:
+
+```powershell
+pytest -q
+```
+
+If you prefer, run the specific test file:
+
+```powershell
+pytest -q tests/test_mini_utils.py
+```
+
 ## Project Structure
 
 ```
