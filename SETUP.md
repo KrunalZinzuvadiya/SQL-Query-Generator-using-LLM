@@ -39,10 +39,24 @@ This guide will help you set up and run the SQL Query Generator project that use
 
 ## Running the Application
 
-To run the SQL Query Generator:
+## Running the Application
 
-```bash
-python SQL_LLM.py
+To run the SQL Query Generator (Tkinter UI):
+
+```powershell
+python .\SQL_LLM.py
+```
+
+There are small demo scripts included that are dependency-free and useful for quick checks:
+
+- `sql_generator.py` — rule-based NL->SQL demo (prints examples and offers a prompt)
+- `mini_demo.py` — tiny demos for utilities and version info
+
+To run those:
+
+```powershell
+python .\sql_generator.py
+python .\mini_demo.py
 ```
 
 ## Project Structure
