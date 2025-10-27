@@ -1,16 +1,35 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
-import cohere
 
-# Configure your Cohere API key
-COHERE_API_KEY = 
+# Try to import Cohere, but don't fail if it's not installed/configured.
+try:
+    import cohere  # type: ignore
+except Exception:
+    cohere = None
 
-# Initialize Cohere client
-cohere_client = cohere.Client(COHERE_API_KEY)
+# Configure your Cohere API key (set to None to use local fallback)
+COHERE_API_KEY = None
 
-# Function to generate SQL query from natural language input
+# Initialize Cohere client if available and configured
+cohere_client = None
+if cohere is not None and COHERE_API_KEY:
+    try:
+        cohere_client = cohere.Client(COHERE_API_KEY)
+    except Exception:
+        cohere_client = None
+
+# Import local rule-based generator as a fallback
+from sql_generator import SimpleSQLGenerator
+
+
 def generate_sql_query(natural_language_input):
-    prompt = f"""
+    """Generate SQL from natural language using Cohere if available, otherwise fallback.
+
+    This keeps the GUI usable even when no API key or model is configured.
+    """
+    # If we have a working cohere client, use it.
+    if cohere_client is not None:
+        prompt = f"""
 You are an SQL expert. Convert the following natural language queries into SQL queries. Be precise and ensure proper SQL syntax. Assume a general database schema.
 
 Examples:
@@ -26,13 +45,17 @@ SQL: SELECT SUM(revenue) AS total_revenue FROM sales WHERE MONTH(sale_date) = MO
 Natural language query: {natural_language_input}
 SQL:
 """
-    response = cohere_client.generate(
-        model="command-xlarge-nightly",
-        prompt=prompt,
-        max_tokens=100
-    )
-    sql_query = response.generations[0].text.strip()
-    return sql_query
+        response = cohere_client.generate(
+            model="command-xlarge-nightly",
+            prompt=prompt,
+            max_tokens=100
+        )
+        sql_query = response.generations[0].text.strip()
+        return sql_query
+
+    # Otherwise, use local SimpleSQLGenerator fallback
+    gen = SimpleSQLGenerator()
+    return gen.generate(natural_language_input)
 
 # Function to handle user query
 def handle_query():

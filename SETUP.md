@@ -59,6 +59,11 @@ python .\sql_generator.py
 python .\mini_demo.py
 ```
 
+## Local LLM fallback
+
+The GUI in `SQL_LLM.py` will try to use Cohere if `COHERE_API_KEY` is set and the Cohere package is available.
+If not configured, it falls back to a small local rule-based generator (`sql_generator.py`). This lets you try the UI and demos without an external API key.
+
 ## Project Structure
 
 ```
